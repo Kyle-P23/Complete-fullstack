@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <title>Your Very Own To-Do List</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <main>
+          <section class="container">
+              <h1>Stay Organized!</h1>
+              <form action="/task" method="post">
+                  <input type="text" id="new-task" name="task">
+                  <button type="submit" id="addTask">To Do</button>
+              </form>
+              <div class="todo-list box">
+                  <h2>Incomplete</h2>
+                    <ul class="messages">
+                      <% for(var i=0; i<incompleteTasks.length; i++) {%>
+                        <li class="message">
+                          <span><%= incompleteTasks[i].task %></span>
+                          <input class="hide" type="text" value="<%= incompleteTasks[i].task %>">
+                          <span><i class="fa-regular fa-pen-to-square"></i></span> 
+                          <span class="hide"><i data-id="<%= incompleteTasks[i]._id %>" class="fa-regular fa-floppy-disk"></i></span>
+                          <span><i data-id="<%= incompleteTasks[i]._id %>" class="fa fa-trash" aria-hidden="true"></i></span>
+                          <button data-id="<%= incompleteTasks[i]._id %>" class="done">Done</button>
+                        </li>
+                      <% } %>
+                      </ul>
+              </div>
+              <div class="complete-list box">
+                  <h2>Complete</h2>
+                    <ul class="messages">
+                      <% for(var i=0; i<completeTasks.length; i++) {%>
+                        <li class="message">
+                          <span><%= completeTasks[i].task %></span>
+                          <span><i data-id="<%= completeTasks[i]._id %>" class="fa fa-trash" aria-hidden="true"></i></span>
+                        </li>
+                      <% } %>
+                      </ul>
+              </div>
+          </section>
+      </main>
+</div>
+
+<script src="https://kit.fontawesome.com/03bbf37f81.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+
+
+</body>
+</html>
